@@ -219,7 +219,6 @@ session_start();
                     },
                     error: function (e) {
                         console.log("Error: " + e.message);
-
                     }
 
                 });

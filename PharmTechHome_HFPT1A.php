@@ -235,15 +235,10 @@ if (isset($_SESSION['savedDrugs'])) {
             console.log(list);
 
             var test = false;
-            console.log(list.a2fTabs);
-            console.log(list.g2lTabs);
 
-            if (list.a2fTabs == true && list.g2lTabs == true) {
+            if (list.a2fTabs == true && list.g2lTabs == true && list.m2rTabs == true && list.s2zTabs == true && list.diabeticSupplies == true && list.refrigerator == true && list.inhalants == true) {
                 test = true;
             }
-
-            console.log(test);
-
 
             if (test) {
 
