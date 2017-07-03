@@ -136,48 +136,49 @@ if(!isset($_SESSION)) {
         }
     </style>
 </head>
-<body>
+<body id="body">
 
 <img src="https://www.wisc-online.com/ARISE_Files/PharmTechCustomization/Pharmacy-Floorplan.png" width="100%">
 
-<a href="https://www.wisc-online.com/ARISE_Files/PharmTechCustomization/HFPT1A/HFPT1a_TabsAF.html" class="shelf" id="tabAF">&nbsp;</a>
+<a href="https://www.wisc-online.com/ARISE_Files/PharmTechCustomization/HFPT1A/HFPT1A_Tablets_A_2_F.php" class="shelf" id="tabAF">&nbsp;</a>
 
-<a href="https://www.wisc-online.com/ARISE_Files/PharmTechCustomization/HFPT1A/HFPT1a_TabsGL.html" class="shelf" id="tabGL">&nbsp;</a>
+<a href="https://www.wisc-online.com/ARISE_Files/PharmTechCustomization/HFPT1A/HFPT1A_Tablets_G_2_L.php" class="shelf" id="tabGL">&nbsp;</a>
 
-<a href="https://www.wisc-online.com/ARISE_Files/PharmTechCustomization/HFPT1A/HFPT1a_TabsMR.html" class="shelf" id="tabMR">&nbsp;</a>
+<a href="https://www.wisc-online.com/ARISE_Files/PharmTechCustomization/HFPT1A/HFPT1A_Tablets_M_2_R.php" class="shelf" id="tabMR">&nbsp;</a>
 
-<a href="https://www.wisc-online.com/ARISE_Files/PharmTechCustomization/HFPT1A/HFPT1a_TabsMR.html" class="shelf" id="tabSZ">&nbsp;</a>
+<a href="https://www.wisc-online.com/ARISE_Files/PharmTechCustomization/HFPT1A/HFPT1A_Tablets_S_2_Z.php" class="shelf" id="tabSZ">&nbsp;</a>
 
-<a href="https://www.wisc-online.com/ARISE_Files/PharmTechCustomization/HFPT1A/HFPT1a_Liquids.html" class="shelf" id="liquids">&nbsp;</a>
+<a href="https://www.wisc-online.com/ARISE_Files/PharmTechCustomization/HFPT1A/HFPT1A_Liquids.php" class="shelf" id="liquids">&nbsp;</a>
 
-<a href="https://www.wisc-online.com/ARISE_Files/PharmTechCustomization/HFPT1A/HFPT1a_Contraceptives.html" class="shelf" id="contraceptives">&nbsp;</a>
+<a href="https://www.wisc-online.com/ARISE_Files/PharmTechCustomization/HFPT1A/HFPT1A_Birth_Control.php" class="shelf" id="contraceptives">&nbsp;</a>
 
 <a href="#" class="shelf locked" id="controlled">&nbsp;</a>
 
-<a href="https://www.wisc-online.com/ARISE_Files/PharmTechCustomization/HFPT1A/HFPT1a_Diabetic.html" class="shelf" id="diabetic">&nbsp;</a>
+<a href="https://www.wisc-online.com/ARISE_Files/PharmTechCustomization/HFPT1A/HFPT1A_Diabetic_Supplies.php" class="shelf" id="diabetic">&nbsp;</a>
 
-<a href="https://www.wisc-online.com/ARISE_Files/PharmTechCustomization/HFPT1A/HFPT1a_Fridge.html" class="shelf" id="fridge">&nbsp;</a>
+<a href="https://www.wisc-online.com/ARISE_Files/PharmTechCustomization/HFPT1A/HFPT1A_Refrigerator.php" class="shelf" id="fridge">&nbsp;</a>
 
-<a href="https://www.wisc-online.com/ARISE_Files/PharmTechCustomization/HFPT1A/HFPT1a_Topicals.html" class="shelf" id="topicals">&nbsp;</a>
+<a href="https://www.wisc-online.com/ARISE_Files/PharmTechCustomization/HFPT1A/HFPT1A_Topicals.php" class="shelf" id="topicals">&nbsp;</a>
 
-<a href="https://www.wisc-online.com/ARISE_Files/PharmTechCustomization/HFPT1A/HFPT1a_Suppositories.html" class="shelf" id="suppositories">&nbsp;</a>
+<a href="https://www.wisc-online.com/ARISE_Files/PharmTechCustomization/HFPT1A/HFPT1A_Suppositories.php" class="shelf" id="suppositories">&nbsp;</a>
 
-<a href="https://www.wisc-online.com/ARISE_Files/PharmTechCustomization/HFPT1A/HFPT1a_Inhalants.html" class="shelf" id="inhalants">&nbsp;</a>
+<a href="https://www.wisc-online.com/ARISE_Files/PharmTechCustomization/HFPT1A/HFPT1A_Inhalants.php" class="shelf" id="inhalants">&nbsp;</a>
 
-<a href="https://www.wisc-online.com/ARISE_Files/PharmTechCustomization/HFPT1A/HFPT1a_Patches.html" class="shelf" id="patches">&nbsp;</a>
+<a href="https://www.wisc-online.com/ARISE_Files/PharmTechCustomization/HFPT1A/HFPT1A_Patches.php" class="shelf" id="patches">&nbsp;</a>
 
 </body>
-
 <?php
-if (isset($_SESSION['savedDrugs'])) {
+if (isset($_SESSION['savedDrugs'])){
     echo '<button class="submit" id="verify">Verify Selections</button>';
 }
 ?>
+
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 <script type="text/javascript">
 
+    var ARIS = {};
     var shelves = document.querySelectorAll(".shelf");
 
     for (var i = 0; i < shelves.length; i++) {
@@ -210,7 +211,8 @@ if (isset($_SESSION['savedDrugs'])) {
                 left: "170px",
                 top: "525px",
                 fontSize: "38px",
-                padding: "20px"
+                padding: "20px",
+                textAlign: "center"
             }).hide().fadeIn(1500).delay(2000).fadeOut(3000);
 
 
@@ -244,14 +246,15 @@ if (isset($_SESSION['savedDrugs'])) {
 
                 $confirmationPopOver = $('<div></div>');
                 $('#body').append($confirmationPopOver);
-                $confirmationPopOver.text("The ARISE Pharmacist has verified your order is correct. You will be progress automatically in a moment.");
+                $confirmationPopOver.text("The ARISE Pharmacist has verified your order is correct. You will progress automatically in a moment.");
                 $confirmationPopOver.width(625).height(125).css({
                     backgroundColor: "white",
                     position: "absolute",
                     left: "170px",
                     top: "525px",
                     fontSize: "38px",
-                    padding: "20px"
+                    padding: "20px",
+                    textAlign: "center"
                 }).hide().fadeIn(1500).delay(2000).fadeOut(3000, function() {
 
                     var passed = ARIS.cache.idForItemName('passed');
@@ -272,7 +275,8 @@ if (isset($_SESSION['savedDrugs'])) {
                     left: "170px",
                     top: "525px",
                     fontSize: "38px",
-                    padding: "20px"
+                    padding: "20px",
+                    textAlign: "center"
                 }).hide().fadeIn(1500).delay(2000).fadeOut(3000);
 
             }
