@@ -181,7 +181,7 @@ session_start();
 
         var activeList = map.querySelectorAll('[data-overlay-on="true"]');
 
-        var drugList = {};
+        var drugList = {drug3: "Mupirocin"};
 
         var drugListCount = (Object.keys(drugList)).length;
 

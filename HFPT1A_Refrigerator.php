@@ -181,8 +181,7 @@ session_start();
 
         var activeList = map.querySelectorAll('[data-overlay-on="true"]');
 
-        var drugList = {drug4: "Aspirin",
-            drug11: "Viroptic"};
+        var drugList = {drug11: "Viroptic"};
 
         var drugListCount = (Object.keys(drugList)).length;
 
