@@ -204,8 +204,6 @@ if (isset($_SESSION['savedDrugs'])){
             var permissionID = ARIS.cache.idForItemName('Permission');
             var permission = ARIS.cache.getPlayerItemCount(permissionID);
 
-            alert(permission);
-
             if(permission == 1) {
 
                 setTimeout(function(){
@@ -237,7 +235,8 @@ if (isset($_SESSION['savedDrugs'])){
                 $('body').append($confirmationPopOver);
                 $confirmationPopOver.text("You do not have access to the controlled substances safe.");
                 $confirmationPopOver.width(625).height(80).css({
-                    backgroundColor: "white",
+                    backgroundColor: "#850537",
+                    color: "white",
                     position: "absolute",
                     left: "170px",
                     top: "525px",
