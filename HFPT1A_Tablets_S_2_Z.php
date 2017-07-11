@@ -26,7 +26,7 @@ session_start();
 </style>
 <body style="text-align: center;" id="body">
 <p style="text-align: center;">Tap on the drugs you wish to select and when done selecting click "Add" to add to order</p>
-<img src="https://www.wisc-online.com/ARISE_Files/Experimental/Hot%20Spot/Pharm_Tech/Pharmacy-Shelves-Example.png" width="100%" class="map" usemap="#features" id="drugShelfImage">
+<img src="https://www.wisc-online.com/ARISE_Files/PharmTechCustomization/HFPT1A/Pharmacy-Shelves-Tablets-S-Z.png" width="100%" class="map" usemap="#features" id="drugShelfImage">
 <map name="features" id="map">
     <area id="drug0"  shape="rect" coords="0,0,241,281">
     <area id="drug1"  shape="rect" coords="241,0,482,281">
@@ -181,7 +181,7 @@ session_start();
 
         var activeList = map.querySelectorAll('[data-overlay-on="true"]');
 
-        var drugList = {};
+        var drugList = {drug4: "Spironolactone"};
 
         var drugListCount = (Object.keys(drugList)).length;
 
@@ -206,14 +206,15 @@ session_start();
 
                         $confirmationPopOver = $('<div></div>');
                         $('#map').append($confirmationPopOver);
-                        $confirmationPopOver.text("You have added the selected medications to the order.");
+                        $confirmationPopOver.text("You have added the selected medication(s) to the order.");
                         $confirmationPopOver.width(625).height(80).css({
                             backgroundColor: "white",
                             position: "absolute",
                             left: "170px",
                             top: "525px",
                             fontSize: "38px",
-                            padding: "20px"
+                            padding: "20px",
+                            textAlign: "center"
                         }).hide().fadeIn(1500).delay(2000).fadeOut(3000);
 
                     },
@@ -241,7 +242,8 @@ session_start();
                             left: "170px",
                             top: "525px",
                             fontSize: "38px",
-                            padding: "20px"
+                            padding: "20px",
+                            textAlign: "center"
                         }).hide().fadeIn(1500).delay(2000).fadeOut(3000);
 
                     },
@@ -269,7 +271,8 @@ session_start();
                         left: "170px",
                         top: "525px",
                         fontSize: "38px",
-                        padding: "20px"
+                        padding: "20px",
+                        textAlign: "center"
                     }).hide().fadeIn(1500).delay(2000).fadeOut(3000);
 
                 },

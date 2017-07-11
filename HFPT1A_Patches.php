@@ -206,20 +206,20 @@ session_start();
 
                         $confirmationPopOver = $('<div></div>');
                         $('#map').append($confirmationPopOver);
-                        $confirmationPopOver.text("You have added the selected medications to the order.");
+                        $confirmationPopOver.text("You have added the selected medication(s) to the order.");
                         $confirmationPopOver.width(625).height(80).css({
                             backgroundColor: "white",
                             position: "absolute",
                             left: "170px",
                             top: "525px",
                             fontSize: "38px",
-                            padding: "20px"
+                            padding: "20px",
+                            textAlign: "center"
                         }).hide().fadeIn(1500).delay(2000).fadeOut(3000);
 
                     },
                     error: function (e) {
                         console.log("Error: " + e.message);
-
                     }
 
                 });
@@ -241,7 +241,8 @@ session_start();
                             left: "170px",
                             top: "525px",
                             fontSize: "38px",
-                            padding: "20px"
+                            padding: "20px",
+                            textAlign: "center"
                         }).hide().fadeIn(1500).delay(2000).fadeOut(3000);
 
                     },
@@ -269,7 +270,8 @@ session_start();
                         left: "170px",
                         top: "525px",
                         fontSize: "38px",
-                        padding: "20px"
+                        padding: "20px",
+                        textAlign: "center"
                     }).hide().fadeIn(1500).delay(2000).fadeOut(3000);
 
                 },
