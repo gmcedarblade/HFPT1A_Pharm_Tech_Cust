@@ -206,10 +206,6 @@ if (isset($_SESSION['savedDrugs'])){
 
             if(permission == 1) {
 
-                setTimeout(function(){
-                    element.style.background = "none";
-                }, 4000);
-
                 $confirmationPopOver = $('<div></div>');
                 $('body').append($confirmationPopOver);
                 $confirmationPopOver.text("You have been granted access to the controlled substances safe.");
