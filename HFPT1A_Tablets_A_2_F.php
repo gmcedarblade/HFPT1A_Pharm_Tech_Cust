@@ -20,9 +20,14 @@ session_start();
     <link rel="stylesheet" type="text/css" href="https://www.wisc-online.com/ARISE_Files/CSS/AriseMainCSS.css?random=pasadsdsds25235h">
 </head>
 <style>
-    button {
-        float: none;
-    }
+  
+ button {
+          background: #d5e4f3;
+          border: 1px solid #2c6197;
+          box-shadow: inset 0 0 0 1px #75a6d7;
+          color: #2c6197;
+          float: none;
+        }
 </style>
 <body style="text-align: center;" id="body">
 <p style="text-align: center;">Tap on the drugs you wish to select and when done selecting click "Add" to add to order</p>
@@ -58,6 +63,8 @@ session_start();
 
     var body = document.querySelector('#body');
     var map = document.querySelector('#map');
+
+    var thePopOver = document.getElementById('#popOver');
 
     var clearButton = document.querySelector('#clear');
     var addButton = document.querySelector('#add');
@@ -130,6 +137,12 @@ session_start();
 
     function addOverlay(drug, x, y, width, height) {
 
+        if(thePopOver) {
+            document.getElementById('#body').removeChild(thePopOver);
+        }
+
+        $('#popOver').remove();
+
         var overlay = document.createElement('div');
 
         overlay.id = drug;
@@ -167,6 +180,13 @@ session_start();
 
     clearButton.addEventListener('click', function(e) {
         e.preventDefault();
+
+        if(thePopOver) {
+            document.getElementById('#body').removeChild(thePopOver);
+        }
+
+        $('#popOver').remove();
+
         var list = map.querySelectorAll('[data-overlay-on="true"]');
         for(var i = 0; i < list.length; i++){
             map.removeChild(list[i]);
@@ -180,6 +200,19 @@ session_start();
         e.preventDefault();
 
         var activeList = map.querySelectorAll('[data-overlay-on="true"]');
+
+        if(thePopOver) {
+            document.getElementById('#body').removeChild(thePopOver);
+        }
+
+        $continueDiv = $('<div></div>');
+        $continueDiv.width("225px").height("50px").css({
+            backgroundImage: 'url("https://www.wisc-online.com/ARISE_Files/PharmTechCustomization/Try-Again-Button.png")',
+            backgroundRepeat: "no-repeat",
+            margin: "0 auto",
+            position: "relative",
+            marginTop: "15px"
+        });
 
         var drugList = {drug8:"Atorvastatin",
             drug9:"Coumadin",
@@ -207,10 +240,16 @@ session_start();
                     data: {myData: "true"},
                     success: function () {
 
-                        $confirmationPopOver = $('<div></div>');
-                        $('#map').append($confirmationPopOver);
-                        $confirmationPopOver.text("You have added the selected medication(s) to the order.");
-                        $confirmationPopOver.width(625).height(80).css({
+                        $('#popOver').remove();
+
+                        $popOver = $('<div id="popOver"></div>');
+                        $('#map').append($popOver);
+
+                        $popOver.text("You have added the selected medication(s) to the order.");
+                        $continueDiv.css({
+                            backgroundImage: 'url("https://www.wisc-online.com/ARISE_Files/PharmTechCustomization/continue-button.png")'
+                        });
+                        $popOver.finish().width(625).height("auto").css({
                             backgroundColor: "white",
                             position: "absolute",
                             left: "170px",
@@ -218,7 +257,9 @@ session_start();
                             fontSize: "38px",
                             padding: "20px",
                             textAlign: "center"
-                        }).hide().fadeIn(1500).delay(2000).fadeOut(3000);
+                        }).hide().clearQueue().fadeIn(1500).delay(2000).append($continueDiv).on('click', function() {
+                            $popOver.fadeOut(3000);
+                        });
 
                     },
                     error: function (e) {
@@ -235,10 +276,13 @@ session_start();
                     data: {myData: "false"},
                     success: function () {
 
-                        $incorrectPopOver = $('<div></div>');
-                        $('#map').append($incorrectPopOver);
-                        $incorrectPopOver.text("You have selected one or more incorrect medications to add to the order. Please try again.");
-                        $incorrectPopOver.width(625).height(125).css({
+                        $('#popOver').remove();
+
+                        $popOver = $('<div id="popOver"></div>');
+                        $('#map').append($popOver);
+
+                        $popOver.text("You have selected one or more incorrect medications to add to the order.");
+                        $popOver.finish().width(625).height("auto").css({
                             backgroundColor: "white",
                             position: "absolute",
                             left: "170px",
@@ -246,7 +290,9 @@ session_start();
                             fontSize: "38px",
                             padding: "20px",
                             textAlign: "center"
-                        }).hide().fadeIn(1500).delay(2000).fadeOut(3000);
+                        }).hide().clearQueue().fadeIn(1500).delay(2000).append($continueDiv).on('click', function() {
+                            $popOver.fadeOut(3000);
+                        });
 
                     },
                     error: function (e) {
@@ -264,10 +310,13 @@ session_start();
                 data: {myData: "false"},
                 success: function () {
 
-                    $incorrectPopOver = $('<div></div>');
-                    $('#map').append($incorrectPopOver);
-                    $incorrectPopOver.text("You have selected an incorrect amount of medications. Please try again.");
-                    $incorrectPopOver.width(625).height(125).css({
+                    $('#popOver').remove();
+
+                    $popOver = $('<div id="popOver"></div>');
+                    $('#body').append($popOver);
+
+                    $popOver.text("You have selected an incorrect amount of medications.");
+                    $popOver.finish().width(625).height("auto").css({
                         backgroundColor: "white",
                         position: "absolute",
                         left: "170px",
@@ -275,7 +324,9 @@ session_start();
                         fontSize: "38px",
                         padding: "20px",
                         textAlign: "center"
-                    }).hide().fadeIn(1500).delay(2000).fadeOut(3000);
+                    }).hide().clearQueue().fadeIn(1500).delay(2000).append($continueDiv).on('click', function() {
+                        $popOver.fadeOut(3000);
+                    });
 
                 },
                 error: function (e) {

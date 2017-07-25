@@ -181,6 +181,17 @@ if (isset($_SESSION['savedDrugs'])){
     var ARIS = {};
     var shelves = document.querySelectorAll(".shelf");
 
+    $popOver = $('<div></div>');
+    $('#body').append($popOver);
+
+    $continueDiv = $('<div></div>');
+    $continueDiv.width("225px").height("50px").css({
+        backgroundImage: 'url(https://www.wisc-online.com/ARISE_Files/Experimental/Hot%20Spot/Pharm_Tech/continue-button.png)',
+        backgroundRepeat: "no-repeat",
+        margin: "0 auto",
+        position: "relative"
+    });
+
     for (var i = 0; i < shelves.length; i++) {
 
         console.log(shelves[i]);

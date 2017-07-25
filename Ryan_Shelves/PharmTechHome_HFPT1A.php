@@ -172,7 +172,7 @@ if (isset($_SESSION['savedDrugs'])){
     echo '<button class="submit" id="verify">Verify Selections</button>';
 }
 ?>
-
+<!--Pages: <span id="output"></span>-->
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
@@ -180,6 +180,7 @@ if (isset($_SESSION['savedDrugs'])){
 
     var ARIS = {};
     var shelves = document.querySelectorAll(".shelf");
+    var lockedShelf = document.querySelectorAll(".locked");
 
     for (var i = 0; i < shelves.length; i++) {
 
@@ -190,12 +191,59 @@ if (isset($_SESSION['savedDrugs'])){
 
     }
 
-    var lockedShelf = document.querySelectorAll(".locked");
+//    var lockedShelf = document.querySelectorAll(".locked");
+//
+//    for (var i = 0; i < lockedShelf.length; i++) {
+//
+//        lockedShelf[i].addEventListener("click", function(e) {
+//
+//            var element = this;
+//
+//            setTimeout(function(){
+//                element.style.background = "none";
+//            }, 4000);
+//
+//            $confirmationPopOver = $('<div></div>');
+//            $('body').append($confirmationPopOver);
+//            $confirmationPopOver.text("You need permission from the Pharmacist to access this area. Please see your Facilitator.");
+//            $confirmationPopOver.width(625).height(135).css({
+//                backgroundColor: "white",
+//                position: "absolute",
+//                left: "170px",
+//                top: "525px",
+//                fontSize: "38px",
+//                padding: "20px",
+//                textAlign: "center"
+//            }).hide().fadeIn(1500).delay(2000).fadeOut(3000);
+//
+//
+//            e.preventDefault();
+//
+//        }, false);
 
-    for (var i = 0; i < lockedShelf.length; i++) {
+//    }
+  
 
-        lockedShelf[i].addEventListener("click", function(e) {
 
+    /*
+     Used for verifying the drug selections made,
+     can only test in ARIS.
+     */
+
+    ARIS.ready = function() {
+      
+      var permission_id = ARIS.cache.idForItemName('Permission');
+      var permission_qty = ARIS.cache.getPlayerItemCount(permission_id);
+      
+       document.getElementById("controlled").onclick = function(e) {
+         
+         if (permission_qty) {
+           
+           window.location.href="https://www.wisc-online.com/ARISE_Files/PharmTechCustomization/HFPT1A/HFPT1A_Narcotic_Safe.php";
+           
+         } else {
+           
+           e.preventDefault();
             var element = this;
 
             setTimeout(function(){
@@ -203,9 +251,9 @@ if (isset($_SESSION['savedDrugs'])){
             }, 4000);
 
             $confirmationPopOver = $('<div></div>');
-            $('body').append($confirmationPopOver);
-            $confirmationPopOver.text("Only the Pharmacist has access to the controlled substances safe.");
-            $confirmationPopOver.width(625).height(80).css({
+            $('#body').append($confirmationPopOver);
+            $confirmationPopOver.text("You need permission from the Pharmacist to access this area. Please see your Facilitator.");
+            $confirmationPopOver.width(625).height(135).css({
                 backgroundColor: "white",
                 position: "absolute",
                 left: "170px",
@@ -214,20 +262,13 @@ if (isset($_SESSION['savedDrugs'])){
                 padding: "20px",
                 textAlign: "center"
             }).hide().fadeIn(1500).delay(2000).fadeOut(3000);
+           
+         }
+         
 
-
-            e.preventDefault();
-
-        }, false);
-
-    }
-
-    /*
-     Used for verifying the drug selections made,
-     can only test in ARIS.
-     */
-
-    ARIS.ready = function() {
+        };
+      
+      
         document.getElementById('verify').onclick = function (e) {
 
             e.preventDefault();
@@ -237,8 +278,11 @@ if (isset($_SESSION['savedDrugs'])){
             console.log(list);
 
             var test = false;
-
-            if (list.a2fTabs == true && list.g2lTabs == true && list.m2rTabs == true && list.s2zTabs == true && list.diabeticSupplies == true && list.refrigerator == true && list.inhalants == true) {
+            
+//            var output = document.getElementById("output");
+//            output.innerHTML = "a2fTabs: " + list.a2fTabs + "\ng2lTabs: " + list.g2lTabs + "\nm2rTabs: " + list.m2rTabs + "\ns2zTabs: " + list.s2zTabs + "\ndiabeticSupplies: " + list.diabeticSupplies + "\nrefrigerator: " + list.refrigerator + "\ninhalants: " + list.inhalants;
+                            
+            if (list.a2fTabs == true && list.g2lTabs == true && list.m2rTabs == true && list.s2zTabs == true && list.diabeticSupplies == true && list.refrigerator == true && list.inhalants == true && list.topicals == true && list.narcoticSafe == true) {
                 test = true;
             }
 
@@ -282,7 +326,8 @@ if (isset($_SESSION['savedDrugs'])){
             }
 
 
-        };
-    }
+        };              
+
+    };
 </script>
 </html>

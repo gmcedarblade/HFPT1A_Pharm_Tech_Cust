@@ -20,9 +20,13 @@ session_start();
     <link rel="stylesheet" type="text/css" href="https://www.wisc-online.com/ARISE_Files/CSS/AriseMainCSS.css?random=pasadsdsds25235h">
 </head>
 <style>
-    button {
-        float: none;
-    }
+  button {
+          background: #d5e4f3;
+          border: 1px solid #2c6197;
+          box-shadow: inset 0 0 0 1px #75a6d7;
+          color: #2c6197;
+          float: none;
+        }
 </style>
 <body style="text-align: center;" id="body">
 <p style="text-align: center;">Tap on the drugs you wish to select and when done selecting click "Add" to add to order</p>
