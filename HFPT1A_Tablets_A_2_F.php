@@ -20,13 +20,18 @@ session_start();
     <link rel="stylesheet" type="text/css" href="https://www.wisc-online.com/ARISE_Files/CSS/AriseMainCSS.css?random=pasadsdsds25235h">
 </head>
 <style>
-    button {
-        float: none;
-    }
+  
+ button {
+          background: #d5e4f3;
+          border: 1px solid #2c6197;
+          box-shadow: inset 0 0 0 1px #75a6d7;
+          color: #2c6197;
+          float: none;
+        }
 </style>
 <body style="text-align: center;" id="body">
 <p style="text-align: center;">Tap on the drugs you wish to select and when done selecting click "Add" to add to order</p>
-<img src="https://www.wisc-online.com/ARISE_Files/Experimental/Hot%20Spot/Pharm_Tech/Pharmacy-Shelves-Example.png" width="100%" class="map" usemap="#features" id="drugShelfImage">
+<img src="https://www.wisc-online.com/ARISE_Files/PharmTechCustomization/HFPT1A/Pharmacy-Shelves-Tablets-A-F.png" width="100%" class="map" usemap="#features" id="drugShelfImage">
 <map name="features" id="map">
     <area id="drug0"  shape="rect" coords="0,0,241,281">
     <area id="drug1"  shape="rect" coords="241,0,482,281">
@@ -181,6 +186,18 @@ session_start();
 
         var activeList = map.querySelectorAll('[data-overlay-on="true"]');
 
+        $popOver = $('<div></div>');
+        $('#map').append($popOver);
+
+        $continueDiv = $('<div></div>');
+        $continueDiv.width("225px").height("50px").css({
+            backgroundImage: 'url("https://www.wisc-online.com/ARISE_Files/Experimental/Hot%20Spot/Pharm_Tech/continue-button.png")',
+            backgroundRepeat: "no-repeat",
+            margin: "0 auto",
+            position: "relative",
+            padding: "5px"
+        });
+
         var drugList = {drug8:"Atorvastatin",
             drug9:"Coumadin",
             drug10:"Diltiazem ER",
@@ -207,10 +224,13 @@ session_start();
                     data: {myData: "true"},
                     success: function () {
 
-                        $confirmationPopOver = $('<div></div>');
-                        $('#map').append($confirmationPopOver);
-                        $confirmationPopOver.text("You have added the selected medication(s) to the order.");
-                        $confirmationPopOver.width(625).height(80).css({
+                        $popOver.remove();
+
+                        $popOver = $('<div></div>');
+                        $('#map').append($popOver);
+
+                        $popOver.text("You have added the selected medication(s) to the order.");
+                        $popOver.finish().width(625).height("auto").css({
                             backgroundColor: "white",
                             position: "absolute",
                             left: "170px",
@@ -218,7 +238,9 @@ session_start();
                             fontSize: "38px",
                             padding: "20px",
                             textAlign: "center"
-                        }).hide().fadeIn(1500).delay(2000).fadeOut(3000);
+                        }).hide().clearQueue().fadeIn(1500).delay(2000).append($continueDiv).on('click', function() {
+                            $popOver.fadeOut(3000).remove();
+                        });
 
                     },
                     error: function (e) {
@@ -235,10 +257,13 @@ session_start();
                     data: {myData: "false"},
                     success: function () {
 
-                        $incorrectPopOver = $('<div></div>');
-                        $('#map').append($incorrectPopOver);
-                        $incorrectPopOver.text("You have selected one or more incorrect medications to add to the order. Please try again.");
-                        $incorrectPopOver.width(625).height(125).css({
+                        $popOver.remove();
+
+                        $popOver = $('<div></div>');
+                        $('#map').append($popOver);
+
+                        $popOver.text("You have selected one or more incorrect medications to add to the order. Please try again.");
+                        $popOver.finish().width(625).height("auto").css({
                             backgroundColor: "white",
                             position: "absolute",
                             left: "170px",
@@ -246,7 +271,9 @@ session_start();
                             fontSize: "38px",
                             padding: "20px",
                             textAlign: "center"
-                        }).hide().fadeIn(1500).delay(2000).fadeOut(3000);
+                        }).hide().clearQueue().fadeIn(1500).delay(2000).append($continueDiv).on('click', function() {
+                            $popOver.fadeOut(3000).remove();
+                        });
 
                     },
                     error: function (e) {
@@ -264,10 +291,13 @@ session_start();
                 data: {myData: "false"},
                 success: function () {
 
-                    $incorrectPopOver = $('<div></div>');
-                    $('#map').append($incorrectPopOver);
-                    $incorrectPopOver.text("You have selected an incorrect amount of medications. Please try again.");
-                    $incorrectPopOver.width(625).height(125).css({
+                    $popOver.remove();
+
+                    $popOver = $('<div></div>');
+                    $('#map').append($popOver);
+
+                    $popOver.text("You have selected an incorrect amount of medications. Please try again.");
+                    $popOver.finish().width(625).height("auto").css({
                         backgroundColor: "white",
                         position: "absolute",
                         left: "170px",
@@ -275,7 +305,9 @@ session_start();
                         fontSize: "38px",
                         padding: "20px",
                         textAlign: "center"
-                    }).hide().fadeIn(1500).delay(2000).fadeOut(3000);
+                    }).hide().clearQueue().fadeIn(1500).delay(2000).append($continueDiv).on('click', function() {
+                        $popOver.fadeOut(3000).remove();
+                    });
 
                 },
                 error: function (e) {

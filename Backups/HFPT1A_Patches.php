@@ -16,21 +16,17 @@ session_start();
 <html lang="en-US">
 <head>
     <meta charset="utf-8">
-    <title>Narcotic Safe Page HFPT1A</title>
+    <title>Patches Page HFPT1A</title>
     <link rel="stylesheet" type="text/css" href="https://www.wisc-online.com/ARISE_Files/CSS/AriseMainCSS.css?random=pasadsdsds25235h">
 </head>
 <style>
     button {
-          background: #d5e4f3;
-          border: 1px solid #2c6197;
-          box-shadow: inset 0 0 0 1px #75a6d7;
-          color: #2c6197;
-          float: none;
-        }
+        float: none;
+    }
 </style>
 <body style="text-align: center;" id="body">
 <p style="text-align: center;">Tap on the drugs you wish to select and when done selecting click "Add" to add to order</p>
-<img src="https://www.wisc-online.com/ARISE_Files/PharmTechCustomization/HFPT1A/Pharmacy--Shelves-Controlled-Substances.png" width="100%" class="map" usemap="#features" id="drugShelfImage">
+<img src="https://www.wisc-online.com/ARISE_Files/Experimental/Hot%20Spot/Pharm_Tech/Pharmacy-Shelves-Example.png" width="100%" class="map" usemap="#features" id="drugShelfImage">
 <map name="features" id="map">
     <area id="drug0"  shape="rect" coords="0,0,241,281">
     <area id="drug1"  shape="rect" coords="241,0,482,281">
@@ -185,7 +181,7 @@ session_start();
 
         var activeList = map.querySelectorAll('[data-overlay-on="true"]');
 
-        var drugList = {drug0: "Androderm"};
+        var drugList = {};
 
         var drugListCount = (Object.keys(drugList)).length;
 
@@ -224,7 +220,6 @@ session_start();
                     },
                     error: function (e) {
                         console.log("Error: " + e.message);
-
                     }
 
                 });
@@ -298,7 +293,7 @@ session_start();
 if(isset($_GET['myData'])) {
     $_GET['myData'] = json_decode($_GET['myData']);
 
-    $_SESSION['savedDrugs']['narcoticSafe'] = $_GET['myData'];
+    $_SESSION['savedDrugs']['patches'] = $_GET['myData'];
 
 }
 ?>
