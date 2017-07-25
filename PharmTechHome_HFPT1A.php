@@ -192,31 +192,57 @@ if (isset($_SESSION['savedDrugs'])){
 
     var lockedShelf = document.querySelectorAll(".locked");
 
+    ARIS.ready = function() {
     for (var i = 0; i < lockedShelf.length; i++) {
 
         lockedShelf[i].addEventListener("click", function(e) {
 
+            e.preventDefault();
+
             var element = this;
 
-            setTimeout(function(){
-                element.style.background = "none";
-            }, 4000);
+            var permissionID = ARIS.cache.idForItemName('Permission');
+            var permission = ARIS.cache.getPlayerItemCount(permissionID);
 
-            $confirmationPopOver = $('<div></div>');
-            $('body').append($confirmationPopOver);
-            $confirmationPopOver.text("Only the Pharmacist has access to the controlled substances safe.");
-            $confirmationPopOver.width(625).height(80).css({
-                backgroundColor: "white",
-                position: "absolute",
-                left: "170px",
-                top: "525px",
-                fontSize: "38px",
-                padding: "20px",
-                textAlign: "center"
-            }).hide().fadeIn(1500).delay(2000).fadeOut(3000);
+            if(permission == 1) {
 
+                $confirmationPopOver = $('<div></div>');
+                $('body').append($confirmationPopOver);
+                $confirmationPopOver.text("You have been granted access to the controlled substances safe.");
+                $confirmationPopOver.width(625).height(80).css({
+                    backgroundColor: "white",
+                    position: "absolute",
+                    left: "170px",
+                    top: "525px",
+                    fontSize: "38px",
+                    padding: "20px",
+                    textAlign: "center"
+                }).hide().fadeIn(1500).delay(2000).fadeOut(3000, function(){
+                    window.location.href = "https://www.wisc-online.com/ARISE_Files/PharmTechCustomization/HFPT1A/HFPT1A_Narcotic_Safe.php";
+                });
 
-            e.preventDefault();
+            } else {
+
+                setTimeout(function(){
+                    element.style.background = "none";
+                }, 4000);
+
+                $confirmationPopOver = $('<div></div>');
+                $('body').append($confirmationPopOver);
+                $confirmationPopOver.text("You do not have access to the controlled substances safe.");
+                $confirmationPopOver.width(625).height(80).css({
+                    backgroundColor: "#850537",
+                    color: "white",
+                    position: "absolute",
+                    left: "170px",
+                    top: "525px",
+                    fontSize: "38px",
+                    padding: "20px",
+                    textAlign: "center"
+                }).hide().fadeIn(1500).delay(2000).fadeOut(3000);
+
+            }
+
 
         }, false);
 
@@ -227,7 +253,7 @@ if (isset($_SESSION['savedDrugs'])){
      can only test in ARIS.
      */
 
-    ARIS.ready = function() {
+
         document.getElementById('verify').onclick = function (e) {
 
             e.preventDefault();
@@ -236,13 +262,13 @@ if (isset($_SESSION['savedDrugs'])){
             list = <?php echo json_encode($_SESSION['savedDrugs']); ?>;
             console.log(list);
 
-            var test = false;
+            var pass = false;
 
-            if (list.a2fTabs == true && list.g2lTabs == true && list.m2rTabs == true && list.s2zTabs == true && list.diabeticSupplies == true && list.refrigerator == true && list.inhalants == true) {
-                test = true;
+            if (list.a2fTabs == true && list.g2lTabs == true && list.m2rTabs == true && list.s2zTabs == true && list.narcoticSafe == true && list.diabeticSupplies == true && list.refrigerator == true && list.topicals == true && list.inhalants == true) {
+                pass = true;
             }
 
-            if (test) {
+            if (pass) {
 
                 $confirmationPopOver = $('<div></div>');
                 $('#body').append($confirmationPopOver);
