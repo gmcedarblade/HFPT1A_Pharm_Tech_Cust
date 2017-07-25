@@ -159,14 +159,7 @@ if (isset($_SESSION['savedDrugs'])){
 
     var ARIS = {};
     var shelves = document.querySelectorAll(".shelf");
-  
-    $continueDiv = $('<div></div>');
-    $continueDiv.width("225px").height("50px").css({
-        backgroundImage: "url('https://www.wisc-online.com/ARISE_Files/Experimental/Hot%20Spot/Pharm_Tech/continue-button.png')",
-        backgroundRepeat: "no-repeat",
-        margin: "0 auto",
-        position: "relative"
-    });
+    
     $popOver = $('<div></div>');
     $('#body').append($popOver);
     for (var i = 0; i < shelves.length; i++) {
@@ -175,6 +168,17 @@ if (isset($_SESSION['savedDrugs'])){
             this.style.background = "rgba(69, 183, 224, .5)";
         }, false);
     }
+
+    // Used for the continue button
+    $continueDiv = $('<div></div>');
+    $continueDiv.width("225px").height("50px").css({
+        backgroundImage: "url('https://www.wisc-online.com/ARISE_Files/Experimental/Hot%20Spot/Pharm_Tech/continue-button.png')",
+        backgroundRepeat: "no-repeat",
+        margin: "0 auto",
+        position: "relative"
+    });
+
+
     /*
      Used for verifying the drug selections made,
      can only test in ARIS.
