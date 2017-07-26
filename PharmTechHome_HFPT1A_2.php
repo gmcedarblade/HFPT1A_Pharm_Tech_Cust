@@ -315,6 +315,7 @@ if (isset($_SESSION['savedDrugs'])){
                 top: "75px",
                 left: "265px",
                 fontSize: "26px",
+                lineHeight: "39px",
                 padding: "15px"
             }).hide().clearQueue().fadeIn(1500).delay(2000).append($continueDiv).on('click', function() {
                 $popOver.fadeOut(3000);
