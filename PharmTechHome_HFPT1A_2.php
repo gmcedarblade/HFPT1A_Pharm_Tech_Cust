@@ -273,31 +273,31 @@ if (isset($_SESSION['savedDrugs'])){
             $orderedList = $('<ol></ol>');
                 
                 if (list.a2fTabs == true) {
-                    $orderedList.append('<li>Atorvastatin</li><li>Coumadin</li><li>Diltiazem ER</li><li>Carbidopa & Levodpa ER</li>');
+                    $orderedList.append('<li>Atorvastatin Calcium 20 mg Tablets</li><li>Coumadin 1 mg Tablets</li><li>Diltiazem Hydrochloride ER 120 mg Capsules</li><li>Carbidopa & Levodpa ER 50 mg/200 mg Tablets</li>');
                 }
                 if (list.g2lTabs == true) {
-                    $orderedList.append('<li>Levothyroxine Sodium</li><li>Lisinopril</li>');
+                    $orderedList.append('<li>Levothyroxine Sodium 50 mcg Tablets</li><li>Lisinopril 20 mg Tablets</li>');
                 }
                 if (list.m2rTabs == true) {
-                    $orderedList.append('<li>Nitroglycerin</li>');
+                    $orderedList.append('<li>Nitroglycerin 0.4 mg Tablets</li>');
                 }
                 if(list.s2zTabs == true) {
-                    $orderedList.append('<li>Spironolactone</li>');
+                    $orderedList.append('<li>Spironolactone 50 mg Tablets</li>');
                 }
                 if (list.diabeticSupplies == true) {
-                    $orderedList.append('<li>Glipizide & Metformin</li>');
+                    $orderedList.append('<li>Glipizide & Metformin 2.5 mg/250 mg Tablets</li>');
                 }
                 if (list.refrigerator == true) {
-                    $orderedList.append('<li>Viroptic</li>');
+                    $orderedList.append('<li>Viroptic 1% Solution</li>');
                 }
                 if(list.inhalants == true) {
-                    $orderedList.append('<li>Albuterol Sulfate</li><li>Spiriva</li><li>Pulmicort</li>');
+                    $orderedList.append('<li>Albuterol Sulfate 90 mcg Inhalation Aerosol</li><li>Spiriva 1.25 mcg Inhalation Spray</li><li>Pulmicort 90 mcg Inhalation Powder</li>');
                 }
                 if (list.topicals == true) {
-                    $orderedList.append('<li>Mupirocin</li>');
+                    $orderedList.append('<li>Mupirocin 2% Ointment</li>');
                 }
                 if (list.narcoticSafe == true) {
-                    $orderedList.append('<li>Androderm</li>');
+                    $orderedList.append('<li>Androderm 4 mg Patch</li>');
                 }
 
                 if (!list.a2fTabs && !list.g2lTabs && !list.m2rTabs && !list.s2zTabs && !list.diabeticSupplies && !list.refrigerator && !list.inhalants && !list.topicals && !list.narcoticSafe) {
