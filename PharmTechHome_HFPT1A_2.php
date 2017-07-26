@@ -162,6 +162,7 @@ if (isset($_SESSION['savedDrugs'])){
     
     $popOver = $('<div></div>');
     $('#body').append($popOver);
+  
     for (var i = 0; i < shelves.length; i++) {
         console.log(shelves[i]);
         shelves[i].addEventListener("touchstart", function() {
@@ -204,9 +205,10 @@ if (isset($_SESSION['savedDrugs'])){
             setTimeout(function(){
                 element.style.background = "none";
             }, 4000);
+           
             $('#body').append($popOver);
              $popOver.finish().text("You need permission from the Pharmacist to access this area. Please see your Facilitator.");
-             $popOver.width(625).height(135).css({
+             $popOver.width(625).height("auto").css({
                 backgroundColor: "white",
                 position: "absolute",
                 left: "170px",

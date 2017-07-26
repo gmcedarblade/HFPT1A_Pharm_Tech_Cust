@@ -30,7 +30,7 @@ session_start();
 </style>
 <body style="text-align: center;" id="body">
 <p style="text-align: center;">Tap on the drugs you wish to select and when done selecting click "Add" to add to order</p>
-<img src="https://www.wisc-online.com/ARISE_Files/PharmTechCustomization/HFPT1A/Contraceptives-Shelf.png" width="100%" class="map" usemap="#features" id="drugShelfImage">
+<img src="https://www.wisc-online.com/ARISE_Files/PharmTechCustomization/HFPT1A/Pharmacy--Shelves-Contraceptives.png" width="100%" class="map" usemap="#features" id="drugShelfImage">
 <map name="features" id="map">
     <area id="drug0"  shape="rect" coords="0,0,241,281">
     <area id="drug1"  shape="rect" coords="241,0,482,281">
