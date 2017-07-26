@@ -309,11 +309,11 @@ if (isset($_SESSION['savedDrugs'])){
             $popOver.text('');
             $popOver.append($orderedList);
 
-            $popOver.finish().width("auto").height("auto").css({
+            $popOver.finish().width(625).height("auto").css({
                 backgroundColor: "white",
                 position: "absolute",
                 top: "75px",
-                left: "265px",
+                left: "170px",
                 fontSize: "26px",
                 lineHeight: "39px",
                 padding: "15px"
