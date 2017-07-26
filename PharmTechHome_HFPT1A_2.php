@@ -176,7 +176,8 @@ if (isset($_SESSION['savedDrugs'])){
         backgroundImage: "url('https://www.wisc-online.com/ARISE_Files/Experimental/Hot%20Spot/Pharm_Tech/continue-button.png')",
         backgroundRepeat: "no-repeat",
         margin: "0 auto",
-        position: "relative"
+        position: "relative",
+        marginTop: "15px"
     });
 
 
@@ -251,7 +252,7 @@ if (isset($_SESSION['savedDrugs'])){
                 });
             } else {
                 $popOver.text("One or more of your selections was incorrect, please try again.");
-                $popOver.finish().width("auto").height("auto").css({
+                $popOver.finish().width(625).height("auto").css({
                     backgroundColor: "white",
                     position: "absolute",
                     left: "170px",
@@ -297,6 +298,12 @@ if (isset($_SESSION['savedDrugs'])){
                 }
                 if (list.narcoticSafe == true) {
                     $orderedList.append('<li>Androderm</li>');
+                }
+
+                if (!list.a2fTabs && !list.g2lTabs && !list.m2rTabs && !list.s2zTabs && !list.diabeticSupplies && !list.refrigerator && !list.inhalants && !list.topicals && !list.narcoticSafe) {
+
+                    $orderedList.append('No medications have been <br>added to the order.');
+
                 }
 
             $popOver.text('');

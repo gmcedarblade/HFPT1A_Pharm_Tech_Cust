@@ -196,13 +196,13 @@ session_start();
 
         var activeList = map.querySelectorAll('[data-overlay-on="true"]');
 
-        if(thePopOver) {
-            document.getElementById('#body').removeChild(thePopOver);
-        }
+        var tryAgainBtn = 'url("https://www.wisc-online.com/ARISE_Files/PharmTechCustomization/Try-Again-Button.png")';
+
+        var continueBtn = 'url("https://www.wisc-online.com/ARISE_Files/PharmTechCustomization/continue-button.png")';
+
 
         $continueDiv = $('<div></div>');
         $continueDiv.width("225px").height("50px").css({
-            backgroundImage: 'url("https://www.wisc-online.com/ARISE_Files/PharmTechCustomization/Try-Again-Button.png")',
             backgroundRepeat: "no-repeat",
             margin: "0 auto",
             position: "relative",
@@ -237,7 +237,7 @@ session_start();
 
                         thePopOverText = "You have added the selected medication(s) to the order.";
 
-                        addPopOver(thePopOverText);
+                        addPopOver(thePopOverText, continueBtn);
 
                     },
                     error: function (e) {
@@ -256,7 +256,7 @@ session_start();
 
                         thePopOverText = "You have selected one or more incorrect medications to add to the order.";
 
-                        addPopOver(thePopOverText);
+                        addPopOver(thePopOverText, tryAgainBtn);
 
                     },
                     error: function (e) {
@@ -276,7 +276,9 @@ session_start();
 
                     thePopOverText = "You have selected an incorrect amount of medications.";
 
-                    addPopOver(thePopOverText);
+
+
+                    addPopOver(thePopOverText, tryAgainBtn);
 
                 },
                 error: function (e) {
@@ -299,12 +301,16 @@ session_start();
 
     }
 
-    function addPopOver(text) {
+    function addPopOver(text, image) {
 
         removePopOver();
 
         $popOver = $('<div id="popOver"></div>');
         $('#body').append($popOver);
+
+        $continueDiv.css({
+            backgroundImage: image
+        });
 
         $popOver.text(text);
         $popOver.finish().width(625).height("auto").css({
